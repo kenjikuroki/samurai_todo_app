@@ -17,10 +17,10 @@ Route::get('/', [HomeController::class, 'index']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::resource("goals", "GoalController");
+Route::resource("goals", "GoalController")->middleware('auth');
 
-Route::resource("goals.todos", "TodoController");
+Route::resource("goals.todos", "TodoController")->middleware('auth');
 
-Route::post('/goals/{goal}/todos/{todo}/sort', 'TodoController@sort');
+Route::post('/goals/{goal}/todos/{todo}/sort', 'TodoController@sort')->middleware('auth');
 
 Auth::routes();
